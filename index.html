@@ -6420,7 +6420,7 @@ body { overflow-wrap: break-word; }
 </script>
 <script>
 // Woche 6: Grenzverhalten – Einstieg durch Herauszoomen, Regeln entdecken (in Worten), Summand mit der höchsten Potenz,
-// erst danach die lim-Schreibweise; Ergänzung x⁻² und x⁻³ (nur x → ±∞)
+// erst danach die lim-Schreibweise; Ergänzung x⁻² und x⁻³ als Zoom-Labor, Grenzwerte selbst entdeckt (nur x → ±∞)
 (function () {
   'use strict';
   var KP = window.KP, h = KP.h, A = KP.A, ED = KP.ED, M = KP.M, P = KP.P, S = KP.M.set, INF = Infinity;
@@ -6486,7 +6486,11 @@ body { overflow-wrap: break-word; }
       var order = R.perm(4);
       return order.map(function (i) { return pool[i]; });
     },
-    ergaenzung: function (R) { var c = R.pick([1, 2, 3]); return { c: c }; },
+    // f(x) = a/x², g(x) = b/x³; c: von welcher Seite sich der Graph von g nähert (0 = von oben, 1 = von unten)
+    ergaenzung: function (R) {
+      var a = R.pick([1, 2, 3]), b = R.pick([1, 2, 3, -1, -2, -3]);
+      return { a: a, b: b, gm: b > 0 ? 1 : 0, gp: b > 0 ? 0 : 1 };
+    },
     sach: function (R) {
       var abc = R.pick([[20, 300, 200], [10, 180, 150], [20, 360, 100]]), a = abc[0], b = abc[1], c = abc[2], t = 25;
       // einzige Nullstelle von N (für t > 0), mit dem Newton-Verfahren
@@ -6634,21 +6638,44 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
-      // ---------- 6 Ergänzung: negative Exponenten ----------
-      var g6 = E.gen('ergaenzung', V.ergaenzung), c6 = g6.c;
+      // ---------- 6 Ergänzung: negative Exponenten (wie der Einstieg: herauszoomen, dann selbst mit lim aufschreiben) ----------
+      var g6 = E.gen('ergaenzung', V.ergaenzung);
+      var fN = function (x) { return g6.a / (x * x); }, gN = function (x) { return g6.b / (x * x * x); };
+      var fTerm = 'f(x)=\\frac{' + g6.a + '}{x^{2}}', gTerm = 'g(x)=' + (g6.b < 0 ? '−' : '') + '\\frac{' + Math.abs(g6.b) + '}{x^{3}}';
+      // kleine Dezimalzahl exakt mit Komma: 0.000002 → 0,000002
+      function klein(v) { var t = Math.abs(v).toFixed(12).replace(/0+$/, '').replace(/\.$/, '').replace('.', ','); return (v < 0 ? '−' : '') + t; }
+      function randFig(fn, name, term, cls, X) {
+        var gr = KP.graph({ x: [-1.15 * X, 1.15 * X], y: [-3, 3], w: 240, h: 240, step: [X / 2, 1], grid: [X / 4, 0.5],
+          curves: [{ f: fn, cls: cls, n: 1200 }], aria: 'Graph von ' + name + ' im Ausschnitt von −' + X + ' bis ' + X });
+        return h('figure', { class: 'fig small' }, h('p', { class: 'zoom-t' }, M.view(term)), gr,
+          h('figcaption', null, KP.rich('$' + name + '(−' + X + ')=' + klein(fn(-X)) + '$, $' + name + '(' + X + ')=' + klein(fn(X)) + '$')));
+      }
+      var lab6 = KP.lab({
+        title: 'Herauszoomen', wide: true,
+        intro: 'Du siehst die Graphen von $f$ und $g$. Zoome mit dem Regler immer weiter heraus. Beobachte die Graphen und die Funktionswerte am linken und rechten Rand des Ausschnitts.',
+        sliders: [{ k: 'z', label: 'Ausschnitt', min: 0, max: ZX.length - 1, step: 1, v: 0, fmt: function (v) { return '±' + big(ZX[v]); } }],
+        render: function (s) {
+          var X = ZX[s.z];
+          return h('div', { class: 'zoom-row' }, randFig(fN, 'f', fTerm, '', X), randFig(gN, 'g', gTerm, 'c3', X));
+        }
+      });
       var s6 = E.section('Ergänzung: negative Exponenten', [
         A.box('Funktionen wie x⁻² und x⁻³', [
-          P('Für $f(x)=x^{−2}=\\frac{1}{x^2}$ gilt: Je größer der Betrag von $x$, desto näher liegt $f(x)$ bei 0. Also $\\lim{x→−∞}f(x)=0$ und $\\lim{x→+∞}f(x)=0$. Der Graph nähert sich für $x→±∞$ immer mehr der $x$-Achse.'),
-          P('Bei $g(x)=x^{−3}$ ist es genauso. Für negative $x$ sind die Funktionswerte von $x^{−3}$ aber negativ: Der Graph nähert sich der $x$-Achse dort von unten.'),
-          P('Solche Funktionen sind nicht ganzrational. Ihr Verhalten bei $x=0$ untersuchst du hier nicht.')
+          P('Ein negativer Exponent steht für einen Bruch: $x^{−2}=\\frac{1}{x^2}$ und $x^{−3}=\\frac{1}{x^3}$. Solche Funktionen sind nicht ganzrational. Weil man nicht durch 0 teilen darf, gehört $x=0$ nicht zur Definitionsmenge – ihr Verhalten dort untersuchst du hier nicht.'),
+          P('Wie verhalten sich diese Funktionen ganz links und ganz rechts? Finde es im Labor selbst heraus.')
         ]),
-        A.partsStep(E, 'ergaenzung', 'Grenzverhalten von x⁻³', {
-          task: ['Gegeben ist $g$ mit $g(x)=' + (c6 === 1 ? '' : c6 + '·') + 'x^{−3}$ und $D_g=\\R\\ohne\\{0\\}$.',
-            A.fig({ x: [-4, 4], y: [-4, 4], w: 260, step: [1, 1], curves: [{ f: function (x) { return c6 / (x * x * x); }, label: 'g', at: 1.2 }], aria: 'Graph von g' })],
+        lab6,
+        A.partsStep(E, 'ergaenzung', 'Negative Exponenten', {
+          task: 'Gegeben sind $f$ mit $' + fTerm + '$ und $g$ mit $' + gTerm + '$, beide mit der Definitionsmenge $\\R\\ohne\\{0\\}$. Nutze das Labor.',
           parts: [
-            function (st) { return A.limits(st, 'l', { v: 'x', fn: { name: 'g', lim: { plus: { num: 0 }, minus: { num: 0 } } } }, ['\\lim{x→−∞}g(x)=0', '\\lim{x→+∞}g(x)=0'], { text: 'a) Gib das Grenzverhalten von $g$ für $x→−∞$ und $x→+∞$ an.', name: 'a)', idBase: 'ergaenzung-l' }); },
-            function (st) { return A.sentence(['b) Für $x→−∞$ nähert sich der Graph der $x$-Achse ', A.choice(st, 'seite', ['von unten', 'von oben'], 0, { R: E.rng('ergaenzung:seite') }), ', denn für $x<0$ sind die Funktionswerte ', A.choice(st, 'vz', ['negativ', 'positiv'], 0, { R: E.rng('ergaenzung:vz') }), '.'], { name: 'b)' }); }
-          ]
+            function (st) { return A.limits(st, 'lf', { v: 'x', fn: { name: 'f', lim: { plus: { num: 0 }, minus: { num: 0 } } } }, ['\\lim{x→−∞}f(x)=0', '\\lim{x→+∞}f(x)=0'], { text: 'a) Gib das Grenzverhalten von $f$ mit lim an.', name: 'a)', idBase: 'ergaenzung-f' }); },
+            function (st) { return A.limits(st, 'lg', { v: 'x', fn: { name: 'g', lim: { plus: { num: 0 }, minus: { num: 0 } } } }, ['\\lim{x→−∞}g(x)=0', '\\lim{x→+∞}g(x)=0'], { text: 'b) Gib das Grenzverhalten von $g$ mit lim an.', name: 'b)', idBase: 'ergaenzung-g' }); },
+            function (st) {
+              return A.sentence(['c) Strebt $x$ gegen minus unendlich, nähert sich der Graph von $g$ der $x$-Achse ', A.choice(st, 'gm', ['von oben', 'von unten'], g6.gm, { R: E.rng('ergaenzung:gm') }),
+                '. Strebt $x$ gegen plus unendlich, nähert er sich ihr ', A.choice(st, 'gp', ['von oben', 'von unten'], g6.gp, { R: E.rng('ergaenzung:gp') }), '.'], { name: 'c)' });
+            }
+          ],
+          tip: KP.tip('Achte beim Herauszoomen auf die Werte unter den Graphen: Welcher Zahl kommen sie immer näher? Und sind sie positiv oder negativ?')
         }).el
       ]);
 
