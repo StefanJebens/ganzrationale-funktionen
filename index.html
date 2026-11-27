@@ -975,12 +975,32 @@ body { overflow-wrap: break-word; }
 }
 @media (max-width: 380px) { .eqv-ic { width: 22px; height: 11px; } }
 .nobr { white-space: nowrap; }
+/* Zoom-Labor (Woche 6): Regler unter den Graphen, zwei Graphen nebeneinander */
+.lab-grid.wide { grid-template-columns: 1fr; }
+.zoom-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.zoom-row .fig { margin: 0; text-align: center; border: 1px solid var(--line); border-radius: 10px; padding: 6px; background: var(--card); }
+.zoom-row .fig .graph { max-width: 100%; }
+.zoom-row figcaption { font-size: 14px; color: var(--ink2); }
+.zoom-row .zoom-t { font-size: 17px; margin: 2px 0 4px; }
+@media (max-width: 560px) { .zoom-row { grid-template-columns: 1fr; } }
+/* Woche 1: Menschen und ihre Namen */
+.fig-map { width: 100%; max-width: 520px; height: auto; display: block; margin: 6px auto 0; }
+.map-set { fill: var(--bg2); stroke: var(--line); stroke-width: 2; }
+.map-label { font: 700 19px var(--font-h); fill: var(--ink); text-anchor: middle; }
+.map-name { font: 600 18px var(--font); fill: var(--ink); text-anchor: middle; }
+.map-arrow { stroke: var(--ink2); stroke-width: 2; }
+.map-head { fill: var(--ink2); }
+.fig-mini { width: 26px; height: 47px; display: block; margin: 0 auto; }
+@media (max-width: 420px) {
+  .graph-row.two { grid-template-columns: 1fr; }
+  .zoom-row .zoom-t { font-size: 14px; }
+}
 
 </style>
 </head>
 <body>
 <div id="app"><noscript><p style="padding:24px">Diese Seite benötigt JavaScript. Bitte aktiviere JavaScript in deinem Browser.</p></noscript></div>
-<script>window.__KP_DATA__="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";window.__KP_KEY__="Ganzrational-EF-2026";</script>
+<script>window.__KP_DATA__="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";window.__KP_KEY__="Ganzrational-EF-2026";</script>
 <script>
 // Lernseiten: gemeinsame Bausteine für die Verwaltung und alle Projekte
 // Datenbank (Firebase Realtime Database), Anmeldung, Inaktivität, Dialoge, Benutzernamen, PDF und Excel
@@ -1801,7 +1821,7 @@ body { overflow-wrap: break-word; }
   // Formel-Bausteine (Knoten) und Kurzschreibweise
   // Zeile = Liste von Knoten. Knoten: Zeichen (Text) oder { t: 'sup'|'sub'|'sqrt', a: Zeile } oder { t: 'frac', n: Zeile, d: Zeile }
   // =====================================================================
-  // Kurzschreibweise: ^{…} Hochzahl, _{…} Index, \frac{…}{…} Bruch, \sqrt{…} Wurzel, \{ \} Mengenklammern,
+  // Kurzschreibweise: ^{…} Exponent, _{…} Index, \frac{…}{…} Bruch, \sqrt{…} Wurzel, \{ \} Mengenklammern,
   // \oder das Wort „oder“; - wird zu −, * zu ·, <=> zu ⇔, +- zu ±; Leerzeichen werden übergangen.
   M.ms = function (s) {
     var i = 0;
@@ -1969,7 +1989,7 @@ body { overflow-wrap: break-word; }
     var a = this.atom();
     while (this.at('SUP')) {
       var s = this.next();
-      if (!s.a.length) throw err(SCHREIB, 'Die Hochzahl ist leer.');
+      if (!s.a.length) throw err(SCHREIB, 'Der Exponent ist leer.');
       a = { k: 'pow', b: a, e: subExpr(s.a, this.ctx) };
     }
     if (this.at('SUB')) {
@@ -2013,7 +2033,7 @@ body { overflow-wrap: break-word; }
   function subExpr(r, ctx) {
     var p = new Parser(tokens(r), ctx);
     var e = p.expr();
-    if (p.peek()) throw err(SCHREIB, 'In der Hochzahl, im Bruch oder unter der Wurzel steht etwas, das dort nicht hingehört.');
+    if (p.peek()) throw err(SCHREIB, 'Im Exponenten, im Bruch oder unter der Wurzel steht etwas, das dort nicht hingehört.');
     return e;
   }
   // Aussage: Gleichung(en), mit ∨/oder verbunden; Gleichungskette a = b = c
@@ -2111,9 +2131,9 @@ body { overflow-wrap: break-word; }
       }
       case 'pow': {
         var es = evalE(e.e, ctx);
-        if (es.length !== 1 || !pconst(es[0]) || !pexact(es[0])) throw err(SCHREIB, 'Als Hochzahl ist hier nur eine natürliche Zahl vorgesehen.');
+        if (es.length !== 1 || !pconst(es[0]) || !pexact(es[0])) throw err(SCHREIB, 'Als Exponent ist hier nur eine natürliche Zahl vorgesehen.');
         var k = pval(es[0]).q;
-        if (k.d !== B1 || k.n < B0 || k.n > BigInt(12)) throw err(SCHREIB, 'Als Hochzahl ist hier nur eine natürliche Zahl vorgesehen.');
+        if (k.d !== B1 || k.n < B0 || k.n > BigInt(12)) throw err(SCHREIB, 'Als Exponent ist hier nur eine natürliche Zahl vorgesehen.');
         return evalE(e.b, ctx).map(function (b) { return ppow(b, Number(k.n)); });
       }
       case 'mul': {
@@ -2480,7 +2500,7 @@ body { overflow-wrap: break-word; }
     return res;
   }
   // Linearfaktorzerlegung: Termkette f(x) = … = a·(x − b)·…
-  function linFactor(e, v) { // x, (x − c), (x + c), jeweils ggf. mit Hochzahl
+  function linFactor(e, v) { // x, (x − c), (x + c), jeweils ggf. mit Exponent
     if (e.k === 'pow') return linFactor(e.b, v) && e.e.k === 'sum' && single(e.e) && isIntE(single(e.e)) && intVal(single(e.e)) >= B2;
     if (e.k === 'var') return e.name === v;
     if (e.k === 'paren') {
@@ -3759,7 +3779,7 @@ body { overflow-wrap: break-word; }
   'use strict';
   var KP = window.KP, S = KP.svg;
   // o: { x: [xmin, xmax], y: [ymin, ymax], w: Breite in px, curves: [{ f: Funktion, cls, label, at }],
-  //      points: [{ x, y, label, cls, dx, dy }], step: [dx, dy] (Beschriftung), aria }
+  //      points: [{ x, y, label, cls, dx, dy }], step: [dx, dy] (Beschriftung), skipY: [y-Werte ohne Zahl], aria }
   KP.graph = function (o) {
     var x0 = o.x[0], x1 = o.x[1], y0 = o.y[0], y1 = o.y[1];
     var W = o.w || 420, unit = W / (x1 - x0), H = o.h ? o.h : Math.round(unit * (y1 - y0) * (o.squash || 1));
@@ -3801,7 +3821,7 @@ body { overflow-wrap: break-word; }
     for (var ty = Math.ceil(y0 / sy - 1e-9) * sy; ty <= y1 + 1e-9; ty += sy) {
       if (Math.abs(ty - AY) < 1e-9 || !(x0 <= AX && x1 >= AX)) continue;
       ax.appendChild(S('line', { x1: X(AX) - 3, y1: Y(ty), x2: X(AX) + 3, y2: Y(ty) }));
-      if (o.noTicks || busyY(ty)) continue;
+      if (o.noTicks || busyY(ty) || (o.skipY && o.skipY.some(function (v) { return Math.abs(v - ty) < 1e-9; }))) continue;
       var t2 = S('text', { x: X(AX) - 6, y: Y(ty) + 4, class: 'g-tick', 'text-anchor': 'end' }); t2.textContent = num(ty); ax.appendChild(t2);
     }
     if (!o.axisAt && x0 <= 0 && x1 >= 0 && y0 <= 0 && y1 >= 0 && !o.noTicks) {
@@ -4134,7 +4154,7 @@ body { overflow-wrap: break-word; }
     var fn = o.fn ? K(o.fn + '(' + v + ')', [o.fn, '(', v, ')'], 'w2 fn', o.fn + ' von ' + v) : null;
     var vk = K(v, v, 'var', 'Variable ' + v);
     var x2 = K(v + '²', function (F) { F.insertMany([v]); F.insert(sup2()); }, 'var', v + ' hoch 2');
-    var pow = K('□ⁿ', function (F) { F.insert({ t: 'sup', a: [] }); }, '', 'Hochzahl');
+    var pow = K('□ⁿ', function (F) { F.insert({ t: 'sup', a: [] }); }, '', 'Exponent');
     var sq = K('√', function (F) { F.insert({ t: 'sqrt', a: [] }); }, '', 'Wurzel');
     var fr = K('Bruch', function (F) { F.insert({ t: 'frac', n: [], d: [] }); }, 'frac-key', 'Bruch');
     var plus = K('+', '+'), minus = K('−', '−', '', 'minus'), mal = K('·', '·', '', 'mal'), durch = K(':', ':', '', 'geteilt');
@@ -4806,7 +4826,7 @@ body { overflow-wrap: break-word; }
 (function () {
   'use strict';
   var KP = window.KP, h = KP.h;
-  // o: { title, intro, sliders: [{ k, label, min, max, step, v, fmt }], toggles: [{ k, label, v }], render: function (state) -> Knoten oder Liste }
+  // o: { title, intro, wide (Regler unter der Darstellung), sliders: [{ k, label, min, max, step, v, fmt }], toggles: [{ k, label, v }], render: function (state) -> Knoten oder Liste }
   KP.lab = function (o) {
     var st = {}, out = h('div', { class: 'lab-out', 'aria-live': 'polite' }), ctl = h('div', { class: 'lab-ctl' });
     function fmt(s, v) { return s.fmt ? s.fmt(v) : String(Math.round(v * 1000) / 1000).replace('.', ',').replace('-', '−'); }
@@ -4844,7 +4864,7 @@ body { overflow-wrap: break-word; }
     return h('div', { class: 'lab' },
       h('p', { class: 'lab-h' }, 'Entdeckungslabor' + (o.title ? ': ' + o.title : '')),
       o.intro ? h('p', null, KP.rich(o.intro)) : null,
-      h('div', { class: 'lab-grid' }, out, ctl));
+      h('div', { class: 'lab-grid' + (o.wide ? ' wide' : '') }, out, ctl));
   };
 })();
 
@@ -5056,7 +5076,8 @@ body { overflow-wrap: break-word; }
 
 </script>
 <script>
-// Woche 1: Funktionen – Funktionsbegriff, Funktionswerte, Graph, Definitions- und Wertemenge
+// Woche 1: Funktionen – allgemeiner Funktionsbegriff (Menschen → Namen), Wertetabelle, Funktionen mit Zahlen, Graph,
+// Funktionswerte, Definitions- und Wertemenge; die Fachbegriffe kommen Schritt für Schritt
 (function () {
   'use strict';
   var KP = window.KP, h = KP.h, A = KP.A, ED = KP.ED, M = KP.M, P = KP.P, S = KP.M.set, INF = Infinity;
@@ -5073,6 +5094,38 @@ body { overflow-wrap: break-word; }
     schleife: { ja: false, g: { x: [-4, 4], y: [-4, 4], curves: [{ par: function (t) { return [(t * t * t - 4 * t) / 2, t]; }, t: [-2.6, 2.6] }] } }
   };
   function graphOf(k, w) { var g = KURVEN[k].g; return Object.assign({ w: w || 200, step: [1, 1], noTicks: true, aria: 'Kurve' }, g); }
+
+  // ---------- Bilder: Menschen und ihre Namen ----------
+  var SV = KP.svg, mapNr = 0;
+  var LEUTE = [{ c: '#1d5c8f', n: 0 }, { c: '#d9480f', n: 1 }, { c: '#2b8a3e', n: 2 }, { c: '#8e44ad', n: 2 }];
+  var NAMEN = ['Lina Wolf', 'Tom Becker', 'Mia Schulz'];
+  // Strichmännchen; (x|y) ist die Hüfte
+  function figur(g, x, y, col) {
+    var a = { stroke: col, 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', fill: 'none' };
+    g.appendChild(SV('circle', { cx: x, cy: y - 27, r: 7, stroke: col, 'stroke-width': 3, fill: col, 'fill-opacity': 0.18 }));
+    g.appendChild(SV('line', Object.assign({ x1: x, y1: y - 20, x2: x, y2: y }, a)));
+    g.appendChild(SV('polyline', Object.assign({ points: (x - 11) + ',' + (y - 6) + ' ' + x + ',' + (y - 14) + ' ' + (x + 11) + ',' + (y - 6) }, a)));
+    g.appendChild(SV('polyline', Object.assign({ points: (x - 9) + ',' + (y + 15) + ' ' + x + ',' + y + ' ' + (x + 9) + ',' + (y + 15) }, a)));
+  }
+  function zuordnungsBild() {
+    var id = 'pfeil' + (++mapNr);
+    var svg = SV('svg', { class: 'fig-map', viewBox: '0 0 520 262', role: 'img',
+      'aria-label': 'Links eine Menge mit vier Menschen, rechts eine Menge mit drei Namen. Von jedem Menschen führt genau ein Pfeil zu seinem Namen. Zwei Menschen heißen beide Mia Schulz.' });
+    var defs = SV('defs'), mk = SV('marker', { id: id, viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 8, markerHeight: 8, orient: 'auto' });
+    mk.appendChild(SV('path', { d: 'M 0 0 L 10 5 L 0 10 z', class: 'map-head' }));
+    defs.appendChild(mk); svg.appendChild(defs);
+    svg.appendChild(SV('ellipse', { cx: 118, cy: 146, rx: 92, ry: 108, class: 'map-set' }));
+    svg.appendChild(SV('ellipse', { cx: 398, cy: 146, rx: 112, ry: 92, class: 'map-set' }));
+    [[118, 'Menschen'], [398, 'Namen']].forEach(function (t) { var e = SV('text', { x: t[0], y: 24, class: 'map-label' }); e.textContent = t[1]; svg.appendChild(e); });
+    var fy = [82, 132, 182, 232], fx = [100, 136, 100, 136], ny = [100, 150, 200];
+    NAMEN.forEach(function (n, i) { var e = SV('text', { x: 398, y: ny[i] + 6, class: 'map-name' }); e.textContent = n; svg.appendChild(e); });
+    LEUTE.forEach(function (p, i) {
+      svg.appendChild(SV('line', { x1: fx[i] + 18, y1: fy[i] - 10, x2: 340, y2: ny[p.n], class: 'map-arrow', 'marker-end': 'url(#' + id + ')' }));
+      figur(svg, fx[i], fy[i], p.c);
+    });
+    return h('figure', { class: 'fig' }, svg, h('figcaption', null, 'Von jedem Menschen geht genau ein Pfeil aus. Zwei Menschen dürfen denselben Namen haben.'));
+  }
+  function figurKlein(col) { var svg = SV('svg', { viewBox: '0 0 30 54', class: 'fig-mini', role: 'img', 'aria-label': 'Mensch' }); figur(svg, 15, 37, col); return svg; }
 
   // ---------- Varianten ----------
   var V = KP.V.w1 = {
@@ -5161,15 +5214,27 @@ body { overflow-wrap: break-word; }
     render: function (E, root) {
       var T = E.T;
 
-      // ---------- 1 Einstieg ----------
+      // ---------- 1 Einstieg: was eine Funktion ist ----------
+      var xs1 = [-2, -1, 0, 1, 2];
       var s1 = E.section('Was ist eine Funktion?', [
-        A.box('Funktion, Funktionswert, Graph', [
-          P('Eine **Funktion** $f$ ordnet jeder Zahl $x$ aus ihrer **Definitionsmenge** $D_f$ **genau eine** Zahl $f(x)$ zu. Die Zahl $f(x)$ heißt **Funktionswert** von $f$ an der Stelle $x$.'),
-          P('Meist ist eine Funktion durch einen **Funktionsterm** gegeben, z. B. $f(x)=x^2−1$. Dann ist $f(2)=2^2−1=3$: Der Stelle 2 wird der Funktionswert 3 zugeordnet.'),
-          P('Der **Graph** von $f$ besteht aus allen Punkten $P(x|f(x))$. Zu $f(2)=3$ gehört der Punkt $P(2|3)$ auf dem Graphen.'),
-          P('Die **Wertemenge** $W_f$ enthält alle Funktionswerte, die $f$ annimmt.'),
-          A.fig({ x: [-3, 3], y: [-2, 5], w: 280, step: [1, 1], curves: [{ f: function (x) { return x * x - 1; }, label: 'f', at: 2.3, ldx: 10 }],
-            points: [{ x: 2, y: 3, label: 'P', dx: -18, dy: -6 }], aria: 'Graph von f mit dem Punkt P(2|3)' }, 'Graph von $f$ mit $f(x)=x^2−1$ und dem Punkt $P(2|3)$')
+        A.box('Eine Zuordnung mit „genau einem“', [
+          P('Eine **Funktion** ordnet jedem Element einer ersten Menge **genau ein** Element einer zweiten Menge zu. Die erste Menge heißt **Definitionsmenge**.'),
+          P('**Beispiel:** Jedem Menschen wird sein vollständiger Name zugeordnet, also Vor- und Nachname. Jeder Mensch hat genau einen vollständigen Namen – diese Zuordnung ist also eine Funktion. Ihre Definitionsmenge ist eine Menge von Menschen, die zweite Menge eine Menge von Namen.'),
+          zuordnungsBild()
+        ]),
+        A.box('Die Wertetabelle', [
+          P('Übersichtlich schreibt man eine Funktion als **Wertetabelle**: Oben stehen die Elemente der Definitionsmenge, darunter jeweils das, was ihnen zugeordnet wird.'),
+          h('div', { class: 'vtab-wrap' }, h('table', { class: 'vtab' },
+            h('tr', null, h('th', null, 'Mensch'), LEUTE.map(function (p) { return h('td', null, figurKlein(p.c)); })),
+            h('tr', null, h('th', null, 'Name'), LEUTE.map(function (p) { return h('td', null, NAMEN[p.n]); }))))
+        ]),
+        A.box('Funktionen mit Zahlen', [
+          P('In der Mathematik ordnen Funktionen meist **Zahlen** wieder Zahlen zu. **Beispiel:** Die Funktion $f$ ordnet jeder Zahl ihr Quadrat zu. Dafür schreibt man kurz $f(x)=x^2$, gelesen „$f$ von $x$ gleich $x$ Quadrat“. Der Term $x^2$ heißt **Funktionsterm**.'),
+          P('$f(3)=9$ bedeutet: Die Funktion $f$ ordnet der Zahl 3 die Zahl 9 zu. Ein Ausschnitt der Wertetabelle:'),
+          h('div', { class: 'vtab-wrap' }, h('table', { class: 'vtab' },
+            h('tr', null, h('th', null, M.view('x')), xs1.map(function (x) { return h('td', null, M.view(A.zahl(x))); })),
+            h('tr', null, h('th', null, M.view('f(x)')), xs1.map(function (x) { return h('td', null, M.view(A.zahl(x * x))); })))),
+          P('Den Zahlen −2 und 2 wird dieselbe Zahl 4 zugeordnet. Das ist erlaubt – wie bei den beiden Menschen mit dem Namen Mia Schulz.')
         ]),
         E.tasks('einstieg', 'Kurz geprüft', T.einstieg).el
       ]);
@@ -5178,7 +5243,14 @@ body { overflow-wrap: break-word; }
       var gt = E.gen('graphtest', V.graphtest), letters = ['A', 'B', 'C', 'D'];
       var kreis = { x: [-4, 4], y: [-4, 4], w: 260, step: [1, 1], curves: [{ par: function (t) { return [3 * Math.cos(t), 3 * Math.sin(t)]; }, t: [0, 2 * Math.PI] }],
         lines: [{ x1: 1.5, y1: -4.5, x2: 1.5, y2: 4.5 }], points: [{ x: 1.5, y: Math.sqrt(6.75), cls: 'c2' }, { x: 1.5, y: -Math.sqrt(6.75), cls: 'c2' }], aria: 'Kreis mit einer senkrechten Geraden, die ihn zweimal schneidet' };
-      var s2 = E.section('Graph oder nicht?', [
+      var s2 = E.section('Der Graph einer Funktion', [
+        A.box('Vom Wertepaar zum Punkt', [
+          P('Die Zahl, die $f$ der Zahl $x$ zuordnet, heißt **Funktionswert** und wird $f(x)$ geschrieben. Jedes Paar aus der Wertetabelle wird zu einem Punkt $P(x|f(x))$ im Koordinatensystem, z. B. $f(2)=4$ zum Punkt $P(2|4)$.'),
+          P('Alle diese Punkte zusammen bilden den **Graphen** von $f$.'),
+          A.fig({ x: [-3, 3], y: [-1, 6], w: 280, step: [1, 1], curves: [{ f: function (x) { return x * x; }, label: 'f', at: 2.25, ldx: 10 }],
+            points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4, label: 'P', dx: -20, dy: -6 }], aria: 'Graph von f mit f(x) = x hoch 2 und den Punkten aus der Wertetabelle' },
+            'Die Punkte aus der Wertetabelle liegen auf dem Graphen von $f$ mit $f(x)=x^2$.')
+        ]),
         A.box('Der Senkrechten-Test', [
           P('Eine Kurve ist genau dann der Graph einer Funktion, wenn **jede senkrechte Gerade** die Kurve **höchstens einmal** schneidet. Denn zu jedem $x$ gehört höchstens ein Funktionswert.'),
           A.fig(kreis, 'Kein Graph einer Funktion: Die senkrechte Gerade schneidet den Kreis zweimal. Zur Stelle 1,5 würden zwei Werte gehören.')
@@ -5202,7 +5274,7 @@ body { overflow-wrap: break-word; }
       var g4 = E.gen('werte', V.werte);
       var s4 = E.section('Funktionswerte berechnen', [
         A.box('Einsetzen und ausrechnen', [
-          P('Den Funktionswert an einer Stelle berechnest du, indem du die Zahl für $x$ einsetzt. Negative Zahlen setzt du in Klammern: $(−2)^2=4$, aber $−2^2=−4$.'),
+          P('Die Zahl, die du für $x$ einsetzt, nennt man auch **Stelle**. Den Funktionswert an einer Stelle berechnest du, indem du die Zahl in den Funktionsterm einsetzt. Negative Zahlen setzt du in Klammern: $(−2)^2=4$, aber $−2^2=−4$.'),
           P('Du schreibst eine **Kette** von Termen, die du mit = verbindest: Zuerst steht der gesuchte Funktionswert, dann der Term mit der eingesetzten Zahl, am Ende das Ergebnis.'),
           P('**Beispiel** mit $g(x)=x^2+4x$:'),
           ED.show(['g(−3)=(−3)^{2}+4·(−3)=9−12=−3'], { nums: false })
@@ -5246,7 +5318,7 @@ body { overflow-wrap: break-word; }
       var g6 = E.gen('dmenge', V.dmenge);
       var s6 = E.section('Definitionsmenge', [
         A.box('Welche Zahlen darf man einsetzen?', [
-          P('Die Definitionsmenge $D_f$ enthält alle Zahlen, die man in den Funktionsterm einsetzen darf. Ist nichts anderes angegeben, nimmst du alle Zahlen, für die der Term berechnet werden kann.'),
+          P('Bei Funktionen mit Zahlen enthält die Definitionsmenge $D_f$ alle Zahlen, die man in den Funktionsterm einsetzen darf. Ist nichts anderes angegeben, nimmst du alle Zahlen, für die der Term berechnet werden kann.'),
           A.list([
             'Durch 0 darf man nicht teilen. Für $f(x)=\\frac{1}{x−6}$ ist $D_f=\\R\\ohne\\{6\\}$.',
             'Unter einer Wurzel darf keine negative Zahl stehen. Für $g(x)=\\sqrt{x−7}$ muss $x−7≥0$ gelten, also $x≥7$: $D_g=[7;+∞[$.',
@@ -5282,7 +5354,7 @@ body { overflow-wrap: break-word; }
       ];
       var s7 = E.section('Wertemenge', [
         A.box('Welche Funktionswerte kommen vor?', [
-          P('Die Wertemenge $W_f$ enthält alle Funktionswerte von $f$. Am Graphen liest du sie an der $y$-Achse ab: Welche $y$-Werte erreicht der Graph?'),
+          P('Die **Wertemenge** $W_f$ enthält alle Funktionswerte von $f$ – beim Beispiel mit den Menschen wären das alle Namen, die vorkommen. Am Graphen liest du die Wertemenge an der $y$-Achse ab: Welche $y$-Werte erreicht der Graph?'),
           P('**Beispiel:** Der Graph von $f$ mit $f(x)=x^2−1$ hat seinen tiefsten Punkt bei $(0|−1)$ und steigt nach beiden Seiten unbegrenzt an: $W_f=[−1;+∞[$.'),
           P('Ist die Definitionsmenge eingeschränkt, gehören nur die Funktionswerte zu diesen $x$ dazu.')
         ]),
@@ -5348,7 +5420,7 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
-      return E.mount(root, { intro: 'In dieser Woche klärst du, was eine Funktion ist: Funktionsterm, Funktionswert und Graph. Du lernst, welche Zahlen man einsetzen darf (Definitionsmenge) und welche Werte herauskommen (Wertemenge).' },
+      return E.mount(root, { intro: 'In dieser Woche klärst du, was eine Funktion ist – zuerst ganz allgemein, dann für Zahlen. Schritt für Schritt kommen Wertetabelle, Graph, Funktionswerte, Definitionsmenge und Wertemenge dazu.' },
         [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10]);
     }
   });
@@ -5361,7 +5433,7 @@ body { overflow-wrap: break-word; }
   'use strict';
   var KP = window.KP, h = KP.h, A = KP.A, ED = KP.ED, M = KP.M, P = KP.P, S = KP.M.set, INF = Infinity;
 
-  // Summanden in vorgegebener Reihenfolge: [[Koeffizient, Hochzahl], …]
+  // Summanden in vorgegebener Reihenfolge: [[Koeffizient, Exponent], …]
   function seq(list, v) {
     v = v || 'x';
     var out = '';
@@ -5387,9 +5459,9 @@ body { overflow-wrap: break-word; }
 
   var V = KP.V.w2 = {
     erkennen: function (R) {
-      var ja = R.sample([['3x^{4}−x+1', 'Ja – alle Hochzahlen sind natürliche Zahlen.'], ['(x−1)(x+2)', 'Ja – ausmultipliziert $x^2+x−2$.'], ['\\frac{1}{2}x^{3}', 'Ja – der Koeffizient $\\frac{1}{2}$ ist eine reelle Zahl.'],
+      var ja = R.sample([['3x^{4}−x+1', 'Ja – alle Exponenten von $x$ sind natürliche Zahlen.'], ['(x−1)(x+2)', 'Ja – ausmultipliziert $x^2+x−2$.'], ['\\frac{1}{2}x^{3}', 'Ja – der Koeffizient $\\frac{1}{2}$ ist eine reelle Zahl.'],
         ['5', 'Ja – eine konstante Funktion vom Grad 0.'], ['(2x−1)^{2}', 'Ja – ausmultipliziert $4x^2−4x+1$.'], ['x^{3}−\\sqrt{2}x', 'Ja – der Koeffizient $\\sqrt{2}$ ist eine reelle Zahl.']], 3);
-      var nein = R.sample([['\\frac{1}{x}', 'Nein – $x$ steht im Nenner.'], ['\\sqrt{x}', 'Nein – $x$ steht unter der Wurzel.'], ['2^{x}', 'Nein – $x$ steht in der Hochzahl.'], ['x^{2}+\\frac{3}{x}', 'Nein – $x$ steht im Nenner.']], 2);
+      var nein = R.sample([['\\frac{1}{x}', 'Nein – $x$ steht im Nenner.'], ['\\sqrt{x}', 'Nein – $x$ steht unter der Wurzel.'], ['2^{x}', 'Nein – $x$ steht im Exponenten.'], ['x^{2}+\\frac{3}{x}', 'Nein – $x$ steht im Nenner.']], 2);
       return R.shuffle(ja.map(function (t) { return { q: 'Ist $f$ mit $f(x)=' + t[0] + '$ ganzrational?', o: ['ganzrational', 'nicht ganzrational'], a: 0, why: t[1] }; })
         .concat(nein.map(function (t) { return { q: 'Ist $f$ mit $f(x)=' + t[0] + '$ ganzrational?', o: ['ganzrational', 'nicht ganzrational'], a: 1, why: t[1] }; })));
     },
@@ -5397,7 +5469,9 @@ body { overflow-wrap: break-word; }
       var n = R.pick([3, 4, 5]), lead = R.pick([-3, -2, 2, 3, 5].filter(function (v) { return v !== n; })), c0 = R.pick([-7, -4, 2, 6, 9]), mid = R.pick([-4, -1, 3]), lo = R.pick([-5, 2, 7]);
       var terms = R.shuffle([[mid, n - 2], [lead, n], [c0, 0], [lo, 1]]);
       if (terms[0][1] === n) terms.push(terms.shift());
-      return { f: seq(terms), n: n, lead: lead, c0: c0 };
+      // b) Koeffizient als Potenz einer Zahl: Der Exponent der Zahl ist nicht der Grad
+      var be = R.pick([[2, 10], [3, 5], [5, 4], [2, 8], [10, 3]]), m = be[1] === 3 ? 2 : R.pick([2, 3]), k = R.pick([3, 4, 7]);
+      return { f: seq(terms), n: n, lead: lead, c0: c0, m: m, g: be[0] + '^{' + be[1] + '}·x^{' + m + '}−' + k + 'x' };
     },
     ausmult: function (R) {
       var a = R.pick([2, 3, -2]), b = R.pick([-4, -3, -1, 1, 2, 5]), c = R.pick([-5, -3, -2, 1, 3, 4]);
@@ -5453,12 +5527,13 @@ body { overflow-wrap: break-word; }
           h('p', { class: 'formula' }, M.view('f(x)=a_{n}·x^{n}+a_{n−1}·x^{n−1}+…+a_{1}·x+a_{0}')),
           P('Dabei ist $n$ eine natürliche Zahl, und die Zahlen $a_n$ bis $a_0$ sind reelle Zahlen mit $a_n≠0$. Sie heißen **Koeffizienten**.'),
           A.list([
-            'Die höchste Hochzahl $n$ ist der **Grad** von $f$.',
-            '$a_n$, der Koeffizient vor der höchsten Potenz, heißt **Leitkoeffizient**.',
+            'Der höchste Exponent von $x$, also $n$, heißt **Grad** von $f$.',
+            '$a_n$, der Koeffizient vor der höchsten Potenz von $x$, heißt **Leitkoeffizient**.',
             '$a_0$, der Summand ohne $x$, heißt **absolutes Glied**.'
           ]),
           P('**Beispiel:** $f(x)=2x^3−x+5$ ist ganzrational vom Grad 3 mit dem Leitkoeffizienten 2 und dem absoluten Glied 5. Die fehlende Potenz $x^2$ hat den Koeffizienten 0.'),
-          P('Ganzrationale Funktionen sind für alle reellen Zahlen definiert: $D_f=\\R$. Steht $x$ im Nenner, unter einer Wurzel oder in der Hochzahl, ist die Funktion nicht ganzrational.')
+          P('**Warum muss $a_n≠0$ sein?** Sonst hätte eine Funktion keinen eindeutigen Grad. $f(x)=x^2$ könnte man dann auch als $f(x)=0·x^3+x^2$ schreiben – mit dem Grad 3 und dem Leitkoeffizienten $a_3=0$. Genauso gut ginge der Grad 712 mit $a_{712}=0$. Die Bedingung $a_n≠0$ sorgt dafür, dass jede ganzrationale Funktion genau einen Grad hat: $f$ hat den Grad 2.'),
+          P('Ganzrationale Funktionen sind für alle reellen Zahlen definiert: $D_f=\\R$. Steht $x$ im Nenner, unter einer Wurzel oder im Exponenten, ist die Funktion nicht ganzrational.')
         ]),
         E.tasks('einstieg', 'Kurz geprüft', T.einstieg).el
       ]);
@@ -5473,13 +5548,19 @@ body { overflow-wrap: break-word; }
       // ---------- 3 Grad und Koeffizienten ----------
       var g3 = E.gen('grad', V.grad);
       var s3 = E.section('Grad und Koeffizienten', [
+        A.box('Achtung beim Grad', [
+          P('Für den Grad zählt nur der Exponent von $x$. $g(x)=2^{10}·x^2$ hat den Grad 2, nicht 10: Die 10 ist der Exponent der Zahl 2. Der Leitkoeffizient ist $2^{10}=1024$.')
+        ]),
         A.partsStep(E, 'grad', 'Ablesen', {
-          task: 'Gegeben ist die ganzrationale Funktion $f$ mit $f(x)=' + g3.f + '$. Gib den Grad, den Leitkoeffizienten und das absolute Glied an.',
+          task: 'Gib bei a) den Grad, den Leitkoeffizienten und das absolute Glied an, bei b) den Grad.',
           parts: [function (st) {
-            return A.sentence(['Grad: ', A.blank(st, 'n', g3.n, { model: String(g3.n), label: 'Grad' }), ', Leitkoeffizient: ', A.blank(st, 'a', g3.lead, { model: A.zahl(g3.lead), label: 'Leitkoeffizient' }),
-              ', absolutes Glied: ', A.blank(st, 'c', g3.c0, { model: A.zahl(g3.c0), label: 'absolutes Glied' })], { name: '' });
+            return A.sentence(['a) $f(x)=' + g3.f + '$: Grad: ', A.blank(st, 'n', g3.n, { model: String(g3.n), label: 'Grad' }), ', Leitkoeffizient: ', A.blank(st, 'a', g3.lead, { model: A.zahl(g3.lead), label: 'Leitkoeffizient' }),
+              ', absolutes Glied: ', A.blank(st, 'c', g3.c0, { model: A.zahl(g3.c0), label: 'absolutes Glied' })], { name: 'a)' });
+          }, function (st) {
+            return A.sentence(['b) $g(x)=' + g3.g + '$ hat den Grad ', A.blank(st, 'm', g3.m, { model: String(g3.m), label: 'Grad von g' }), ', denn für den Grad zählt ',
+              A.choice(st, 'warum', ['nur der Exponent von $x$', 'der größte Exponent im ganzen Term'], 0, { R: E.rng('grad:warum') }), '.'], { name: 'b)' });
           }],
-          tip: KP.tip('Ordne die Summanden in Gedanken nach den Hochzahlen. Das Vorzeichen gehört zum Koeffizienten: Bei $5−4x^6$ ist der Leitkoeffizient −4.')
+          tip: KP.tip('Ordne die Summanden in Gedanken nach den Exponenten von $x$. Das Vorzeichen gehört zum Koeffizienten: Bei $5−4x^6$ ist der Leitkoeffizient −4.')
         }).el
       ]);
 
@@ -5488,7 +5569,7 @@ body { overflow-wrap: break-word; }
       var s4 = E.section('Ausmultiplizieren', [
         A.box('Erst ausmultiplizieren', [
           P('Ist der Term als Produkt gegeben, siehst du Grad und Koeffizienten erst nach dem Ausmultiplizieren. Das ist eine Termumformung: Die Zeilen verbindest du mit =.'),
-          P('Am Ende steht die **Normalform**: zusammengefasst und nach fallenden Hochzahlen geordnet.'),
+          P('Am Ende steht die **Normalform**: zusammengefasst und nach fallenden Exponenten geordnet.'),
           P('**Beispiel:**'),
           ED.show(['g(x)=(x+4)(x^{2}−2)=x^{3}−2x+4x^{2}−8=x^{3}+4x^{2}−2x−8'], { nums: false })
         ]),
@@ -5499,22 +5580,22 @@ body { overflow-wrap: break-word; }
             return A.sentence(['b) Grad: ', A.blank(st, 'n', 3, { model: '3', label: 'Grad' }), ', Leitkoeffizient: ', A.blank(st, 'a', g4.a, { model: A.zahl(g4.a), label: 'Leitkoeffizient' }),
               ', absolutes Glied: ', A.blank(st, 'c', g4.b * g4.c, { model: A.zahl(g4.b * g4.c), label: 'absolutes Glied' })], { name: 'b)' });
           }],
-          tip: KP.tip('Multipliziere jeden Summanden der ersten Klammer mit jedem Summanden der zweiten. Ordne danach nach fallenden Hochzahlen.')
+          tip: KP.tip('Multipliziere jeden Summanden der ersten Klammer mit jedem Summanden der zweiten. Ordne danach nach fallenden Exponenten.')
         }).el
       ]);
 
       // ---------- 5 Gegenbeispiel x^(−2) ----------
       var g5 = E.gen('xminus2', V.xminus2), c5 = g5.c;
       var fterm5 = (c5 === 1 ? '' : c5 === -1 ? '−' : A.zahl(c5) + '·') + 'x^{−2}';
-      var s5 = E.section('Ein Gegenbeispiel: negative Hochzahl', [
-        A.box('Negative Hochzahlen', [
-          P('Für $x≠0$ ist $x^{−2}=\\frac{1}{x^2}$. Die Hochzahl −2 ist keine natürliche Zahl – Funktionen wie $f(x)=x^{−2}$ sind deshalb **nicht ganzrational**.'),
+      var s5 = E.section('Ein Gegenbeispiel: negativer Exponent', [
+        A.box('Negative Exponenten', [
+          P('Für $x≠0$ ist $x^{−2}=\\frac{1}{x^2}$. Der Exponent −2 ist keine natürliche Zahl – Funktionen wie $f(x)=x^{−2}$ sind deshalb **nicht ganzrational**.'),
           P('Für $x=0$ ist $x^{−2}$ nicht definiert, denn dann stünde im Nenner 0.')
         ]),
-        A.partsStep(E, 'xminus2', 'Eine Funktion mit negativer Hochzahl', {
+        A.partsStep(E, 'xminus2', 'Eine Funktion mit negativem Exponenten', {
           task: ['Gegeben ist $f$ mit $f(x)=' + fterm5 + '$.', A.fig({ x: [-4, 4], y: c5 > 0 ? [-1, 6] : [-6, 1], w: 260, step: [1, 1], curves: [{ f: function (x) { return c5 / (x * x); }, label: 'f', at: 1.3 }], aria: 'Graph von f' }, 'Graph von $f$')],
           parts: [
-            function (st) { return A.mc(E, 'xminus2-mc', [{ q: 'Warum ist $f$ nicht ganzrational?', o: ['Die Hochzahl −2 ist keine natürliche Zahl.', 'Der Funktionsterm hat nur einen Summanden.', 'Der Koeffizient ist negativ.', 'Der Graph ist achsensymmetrisch.'], a: 0 }], E.obj('xminus2-mc', [])); },
+            function (st) { return A.mc(E, 'xminus2-mc', [{ q: 'Warum ist $f$ nicht ganzrational?', o: ['Der Exponent −2 ist keine natürliche Zahl.', 'Der Funktionsterm hat nur einen Summanden.', 'Der Koeffizient ist negativ.', 'Der Graph ist achsensymmetrisch.'], a: 0 }], E.obj('xminus2-mc', [])); },
             function (st) { return A.set(st, 'D', S.ohne(S.R(), [0]), { text: 'Gib die Definitionsmenge an.', pre: 'D_{f}=', name: 'Definitionsmenge' }); },
             function (st) { return A.set(st, 'W', g5.W, { text: 'Gib die Wertemenge an.', pre: 'W_{f}=', name: 'Wertemenge' }); }
           ]
@@ -5647,7 +5728,31 @@ body { overflow-wrap: break-word; }
   function roots(c) { return M.solvePoly(A.poly(c.map(function (x) { return Math.round(x * 1000); }))).v.slice().sort(function (a, b) { return a - b; }); }
   function r2(v) { return A.dec(Math.round(v * 100) / 100, 2); }
 
+  // Zahl mit Dezimalpunkt für GeoGebra bzw. mit Komma für das Papier
+  function cl(v) { return Math.round(v * 10000) / 10000; }
+  function ggDec(v) { return String(cl(v)); }
+  // Polynom mit Dezimalkoeffizienten (aufsteigend) als Term: Komma (Seite) oder Punkt (GeoGebra)
+  function decTerm(c, gge) {
+    var out = '';
+    for (var i = c.length - 1; i >= 0; i--) {
+      var a = cl(c[i]); if (!a) continue;
+      var abs = Math.abs(a), num = gge ? String(abs) : A.dec(abs);
+      out += (a < 0 ? (gge ? '-' : '−') : (out ? '+' : '')) + (i > 0 && abs === 1 ? '' : num) + (i === 0 ? '' : i === 1 ? 'x' : (gge ? 'x^' + i : 'x^{' + i + '}'));
+    }
+    return out;
+  }
+
   var V = KP.V.w3 = {
+    runden: function (R) {
+      var ab = R.pick([[22, 7], [1, 7], [5, 13], [9, 13], [7, 11], [17, 6]]), v = ab[0] / ab[1];
+      return { a: ab[0], b: ab[1], v: v, m2: A.dec(Math.round(v * 100) / 100, 2), m5: A.dec(Math.round(v * 100000) / 100000, 5) };
+    },
+    ausschnitt: function (R) {
+      // f(x) = a·(x − k)(x − k − 1)(x − k − 2): Nullstellen k, k + 1, k + 2, dazwischen |f(x)| < 0,1
+      var k = R.pick([20, 25, 30, 35, 40]), a = R.pick([0.25, -0.25, 0.2, -0.2]);
+      var c = [-k * (k + 1) * (k + 2) * a, (3 * (k + 1) * (k + 1) - 1) * a, -3 * (k + 1) * a, a].map(cl);
+      return { k: k, a: a, c: c, f: decTerm(c, false), gg: decTerm(c, true), sols: [k, k + 1, k + 2], model: 'x=' + k + '∨x=' + (k + 1) + '∨x=' + (k + 2) };
+    },
     werte: function (R) {
       var b = R.pick([-3, -2, 2]), c = R.pick([1, 3, 5]);
       var f = function (x) { return 0.25 * x * x * x + b * x + c; };
@@ -5701,7 +5806,7 @@ body { overflow-wrap: break-word; }
 
   KP.defineWeek({
     n: 3,
-    order: ['einstieg', 'werte', 'tabelle', 'nullexakt', 'nullrund', 'gleichung', 'uebersetzen', 'normal', 'sach', 'papier'],
+    order: ['einstieg', 'runden', 'werte', 'tabelle', 'nullexakt', 'nullrund', 'ausschnitt', 'gleichung', 'uebersetzen', 'normal', 'sach', 'papier'],
     optional: { zusatz: 'papier' },
     render: function (E, root) {
       var T = E.T;
@@ -5714,7 +5819,7 @@ body { overflow-wrap: break-word; }
         ]),
         A.box('Die wichtigsten Befehle', [
           A.list([
-            '`f(x):=x^3-2x` – definiert die Funktion $f$ mit $f(x)=x^3−2x$. Wichtig ist der Doppelpunkt vor dem Gleichheitszeichen.',
+            '`f(x)=x^3-2x` – definiert die Funktion $f$ mit $f(x)=x^3−2x$. Danach kannst du $f$ in allen Befehlen verwenden.',
             '`f(2)` – berechnet den Funktionswert $f(2)$ exakt, also als Bruch oder mit Wurzel.',
             '`Folge(f(k), k, -2, 2)` – berechnet die Funktionswerte für $k=−2$, $−1$, $0$, $1$, $2$: eine Wertetabelle. Mit `Folge(f(k), k, 0, 2, 0.5)` geht es in Schritten von 0,5.',
             '`Löse(f(x)=0)` – löst die Gleichung exakt.',
@@ -5738,11 +5843,32 @@ body { overflow-wrap: break-word; }
         E.tasks('einstieg', 'Kurz geprüft', T.einstieg).el
       ]);
 
+      // ---------- 1b Rundung ----------
+      var gr = E.gen('runden', V.runden);
+      var s1b = E.section('Die Rundung einstellen', [
+        A.box('Wie viele Nachkommastellen?', [
+          P('Gerundete Ergebnisse zeigt GeoGebra mit so vielen Nachkommastellen, wie unter „Runden“ eingestellt ist. **Nach jedem Neustart der App stehen dort 13 Nachkommastellen** – das ist sehr unübersichtlich. So stellst du die Rundung um:'),
+          A.list([
+            'Tippe auf das Menü ☰ und dann auf „Einstellungen“ (Zahnrad).',
+            'Wähle bei „Runden“ die gewünschte Anzahl, z. B. „2 Nachkommastellen“.',
+            'Prüfe die Einstellung jedes Mal, wenn du die App neu gestartet hast.'
+          ])
+        ]),
+        A.partsStep(E, 'runden', 'Rundung einstellen', {
+          task: ['Tippe im CAS `' + gr.a + '/' + gr.b + '` ein und lass das Ergebnis mit der Taste ≈ als Dezimalzahl anzeigen.',
+            'Stelle die Rundung nacheinander auf 2 und auf 5 Nachkommastellen. Was zeigt GeoGebra jeweils an? Stelle danach wieder 2 Nachkommastellen ein – damit arbeitest du in dieser Woche weiter.'],
+          parts: [function (st) {
+            return A.sentence(['Bei 2 Nachkommastellen: ', A.blank(st, 'z2', gr.v, { model: gr.m2, label: 'Anzeige bei 2 Nachkommastellen', round: 2 }),
+              ', bei 5 Nachkommastellen: ', A.blank(st, 'z5', gr.v, { model: gr.m5, label: 'Anzeige bei 5 Nachkommastellen', round: 5 }), '.'], { name: '' });
+          }]
+        }).el
+      ]);
+
       // ---------- 2 Funktionswerte ----------
       var g2 = E.gen('werte', V.werte);
       var s2 = E.section('Funktionswerte bestimmen', [
         A.partsStep(E, 'werte', 'Funktionswerte', {
-          task: ['Gegeben ist die Funktion $f$ mit $f(x)=' + g2.f + '$. Definiere sie im CAS: `f(x):=' + g2.gg + '`', 'Bestimme die Funktionswerte. Brüche darfst du als Bruch oder als Dezimalzahl angeben.'],
+          task: ['Gegeben ist die Funktion $f$ mit $f(x)=' + g2.f + '$. Definiere sie im CAS: `f(x)=' + g2.gg + '`', 'Bestimme die Funktionswerte. Brüche darfst du als Bruch oder als Dezimalzahl angeben.'],
           parts: [function (st) {
             return A.sentence(['$f(2,5)=$ ', A.blank(st, 'a', g2.v1, { model: A.num(g2.v1), label: 'f(2,5)' }), ' (exakt), $f(−\\frac{1}{2})=$ ', A.blank(st, 'b', g2.v2, { model: A.num(g2.v2), label: 'f(−1/2)' }),
               ' (exakt) und $f(\\sqrt{3})≈$ ', A.blank(st, 'c', g2.v3, { model: r2(g2.v3), label: 'f(√3) gerundet', round: 2 }), ' (gerundet auf zwei Nachkommastellen).'], { name: '' });
@@ -5755,7 +5881,7 @@ body { overflow-wrap: break-word; }
       var g3 = E.gen('tabelle', V.tabelle);
       var s3 = E.section('Wertetabellen', [
         A.partsStep(E, 'tabelle', 'Wertetabelle mit Folge', {
-          task: ['Gegeben ist $g$ mit $g(x)=' + g3.g + '$. Definiere $g$ im CAS: `g(x):=' + g3.gg + '`'],
+          task: ['Gegeben ist $g$ mit $g(x)=' + g3.g + '$. Definiere $g$ im CAS: `g(x)=' + g3.gg + '`'],
           parts: [
             function (st) { return A.table(st, 't1', g3.xs, g3.ys, { fn: 'g', text: 'a) Bestimme die Wertetabelle für die ganzen Zahlen von −2 bis 2 mit `Folge(g(k), k, -2, 2)`.', name: 'a)' }); },
             function (st) { return A.table(st, 't2', g3.xs2, g3.ys2, { fn: 'g', text: 'b) Bestimme die Wertetabelle von 0 bis 2 in Schritten von 0,5. Gib die Werte als Dezimalzahl oder als Bruch an.', name: 'b)' }); }
@@ -5788,16 +5914,41 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
+      // ---------- 5b Bildausschnitt ----------
+      var ga = E.gen('ausschnitt', V.ausschnitt);
+      var s5b = E.section('Den Bildausschnitt einstellen', [
+        A.box('Nicht nur mit zwei Fingern zoomen', [
+          P('Jede Funktion, die du im CAS definierst, zeichnet GeoGebra auch in die **Grafik**. Oft zeigt der Ausschnitt aber nicht das, was du sehen willst.'),
+          P('Mit zwei Fingern zoomst du **beide Achsen gleichzeitig und gleich stark**. Manchmal braucht man aber auf der einen Achse einen ganz anderen Maßstab als auf der anderen. Dann stellst du den Ausschnitt genau ein:'),
+          A.list([
+            'Tippe in der Grafik auf das Zahnrad und wähle „Einstellungen“.',
+            'Unter „Grundeinstellungen“ trägst du bei „x Min“ und „x Max“ ein, von wo bis wo die $x$-Achse reichen soll – bei „y Min“ und „y Max“ dasselbe für die $y$-Achse.',
+            'Dort kannst du stattdessen auch das Verhältnis der Achsen („x-Achse : y-Achse“) ändern.'
+          ])
+        ]),
+        A.partsStep(E, 'ausschnitt', 'Drei versteckte Nullstellen', {
+          task: ['Gegeben ist die Funktion $f$ mit', h('p', { class: 'formula' }, M.view('f(x)=' + ga.f)), 'Definiere $f$ im CAS: `f(x)=' + ga.gg + '`',
+            'Im Standardausschnitt siehst du keine Nullstelle. Zoomst du mit zwei Fingern heraus, scheint der Graph die $x$-Achse nur einmal zu schneiden.'],
+          parts: [
+            function (st) { return A.result(st, 'n', { v: 'x', sols: ga.sols }, ga.model, { text: 'a) Stelle den Ausschnitt ein: $x$ von ' + (ga.k - 1) + ' bis ' + (ga.k + 3) + ', $y$ von −0,2 bis 0,2. Gib die Nullstellen von $f$ an, die du jetzt siehst.', name: 'a)' }); },
+            function (st) { return A.sentence(['b) Zwischen den ersten beiden Nullstellen verläuft der Graph ', A.choice(st, 'lage', ['oberhalb', 'unterhalb'], ga.a > 0 ? 0 : 1, { R: E.rng('ausschnitt:lage') }), ' der $x$-Achse.'], { name: 'b)' }); },
+            function (st) {
+              return A.sentence(['c) Mit zwei Fingern klappt es nicht, weil dabei beide Achsen ', A.choice(st, 'zoom', ['gleich stark', 'unterschiedlich stark'], 0, { R: E.rng('ausschnitt:zoom') }),
+                ' gezoomt werden. Hier braucht die $y$-Achse aber einen ', A.choice(st, 'bereich', ['viel kleineren', 'viel größeren'], 0, { R: E.rng('ausschnitt:bereich') }), ' Bereich als die $x$-Achse.'], { name: 'c)' });
+            }
+          ]
+        }).el
+      ]);
+
       // ---------- 6 Gleichungen ----------
       var g6 = E.gen('gleichung', V.gleichung);
       var s6 = E.section('Gleichungen lösen', [
         A.partsStep(E, 'gleichung', 'Stellen zu einem Funktionswert', {
           task: 'Gegeben ist $f$ mit $f(x)=' + g6.f + '$. An welchen Stellen nimmt $f$ den Wert ' + g6.c + ' an?',
           parts: [
-            function (st) { return A.result(st, 'ex', { v: 'x', sols: g6.sols }, g6.model, { text: 'a) Bestimme die Stellen exakt.', name: 'a)' }); },
-            function (st) { return A.result(st, 'rd', { v: 'x', sols: g6.sols, round: 2 }, g6.modelR, { text: 'b) Bestimme die Stellen gerundet auf zwei Nachkommastellen.', name: 'b)' }); }
+            function (st) { return A.result(st, 'ex', { v: 'x', sols: g6.sols }, g6.model, { text: 'Bestimme die Stellen exakt.', name: 'Stellen' }); }
           ],
-          tip: KP.tip('Tippe `Löse(f(x)=' + g6.c + ')` bzw. `NLöse(f(x)=' + g6.c + ')`. Statt zwei Lösungen mit ∨ darfst du bei a) auch ± verwenden.')
+          tip: KP.tip('Tippe `Löse(f(x)=' + g6.c + ')`. Statt zwei Lösungen mit ∨ darfst du auch ± verwenden.')
         }).el
       ]);
 
@@ -5869,7 +6020,7 @@ body { overflow-wrap: break-word; }
             title: 'Eine Funktion mit dem Rechner untersuchen',
             intro: 'Gegeben ist die Funktion $f$ mit $f(x)=' + ft + '$ und $D_f=\\R$. Du darfst den CAS-Rechner benutzen. Schreibe zu jeder Teilaufgabe auf, welchen Befehl du verwendet hast.',
             parts: [
-              { t: 'Bestimme eine Wertetabelle von $f$ für die ganzen Zahlen von −3 bis 3.', s: ['`f(x):=' + gg2 + '`, dann `Folge(f(k), k, -3, 3)`:', h('div', { class: 'vtab-wrap' }, h('table', { class: 'vtab' }, h('tr', null, h('th', null, 'x'), xs.map(function (x) { return h('th', null, M.view(A.zahl(x))); })), h('tr', null, h('th', null, M.view('f(x)')), xs.map(function (x) { return h('td', null, M.view(A.zahl(f(x)))); }))))] },
+              { t: 'Bestimme eine Wertetabelle von $f$ für die ganzen Zahlen von −3 bis 3.', s: ['`f(x)=' + gg2 + '`, dann `Folge(f(k), k, -3, 3)`:', h('div', { class: 'vtab-wrap' }, h('table', { class: 'vtab' }, h('tr', null, h('th', null, 'x'), xs.map(function (x) { return h('th', null, M.view(A.zahl(x))); })), h('tr', null, h('th', null, M.view('f(x)')), xs.map(function (x) { return h('td', null, M.view(A.zahl(f(x)))); }))))] },
               { t: 'Zeichne mithilfe der Tabelle den Graphen von $f$.', s: [A.fig({ x: [-3.5, 3.5], y: [-14, 14], w: 240, h: 300, step: [1, 4], grid: [1, 2], curves: [{ f: f, label: 'f', at: 2.6 }], aria: 'Graph von f' })] },
               { t: 'Bestimme die Nullstellen von $f$, gerundet auf zwei Nachkommastellen.', s: ['`NLöse(f(x)=0)`: $' + g.z.map(function (x) { return 'x≈' + r2(x); }).join('∨') + '$'] },
               { t: 'Gib den Schnittpunkt des Graphen mit der $y$-Achse an.', s: ['`f(0)` ergibt ' + g.q + ', also $S_y(0|' + g.q + ')$.'] },
@@ -5890,8 +6041,8 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
-      return E.mount(root, { intro: 'In dieser Woche lernst du den CAS-Rechner kennen. Du wiederholst Funktionswerte, Wertetabellen, Nullstellen und Gleichungen aus den Wochen 1 und 2 – diesmal mit dem Rechner. Und du übst, die Ergebnisse in korrekter Schreibweise aufzuschreiben.' },
-        [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11]);
+      return E.mount(root, { intro: 'In dieser Woche lernst du den CAS-Rechner kennen. Du wiederholst Funktionswerte, Wertetabellen, Nullstellen und Gleichungen aus den Wochen 1 und 2 – diesmal mit dem Rechner. Du stellst die Rundung und den Bildausschnitt ein und übst, die Ergebnisse in korrekter Schreibweise aufzuschreiben.' },
+        [s1, s1b, s2, s3, s4, s5, s5b, s6, s7, s8, s9, s10, s11]);
     }
   });
 })();
@@ -6268,7 +6419,8 @@ body { overflow-wrap: break-word; }
 
 </script>
 <script>
-// Woche 6: Grenzverhalten – lim-Schreibweise, Potenzfunktionen, Summand mit der höchsten Potenz; Ergänzung x⁻² und x⁻³ (nur x → ±∞)
+// Woche 6: Grenzverhalten – Einstieg durch Herauszoomen, Regeln entdecken (in Worten), Summand mit der höchsten Potenz,
+// erst danach die lim-Schreibweise; Ergänzung x⁻² und x⁻³ (nur x → ±∞)
 (function () {
   'use strict';
   var KP = window.KP, h = KP.h, A = KP.A, ED = KP.ED, M = KP.M, P = KP.P, S = KP.M.set, INF = Infinity;
@@ -6300,6 +6452,9 @@ body { overflow-wrap: break-word; }
     return c;
   }
   function fmtA(a) { return (a < 0 ? '−' : '') + String(Math.abs(a)).replace('.', ','); }
+  // große Zahl mit schmalen Leerzeichen: 2500000 → 2 500 000
+  function big(v) { var t = String(Math.round(v)), out = ''; while (t.length > 3) { out = '\u202f' + t.slice(-3) + out; t = t.slice(0, -3); } return t + out; }
+  function wort(s) { return s > 0 ? 'plus unendlich' : 'minus unendlich'; }
 
   var V = KP.V.w6 = {
     leitterm: function (R) {
@@ -6317,7 +6472,9 @@ body { overflow-wrap: break-word; }
     angeben: function (R) {
       var nf = R.pick([3, 5]), ng = R.pick([4, 6]);
       var cf = poly(nf, R.pick([-3, -2, 2, 3]), R), cg = poly(ng, R.pick([-2, -1, 2, 4]), R);
-      return { cf: cf, cg: cg, f: mixed(cf, R), g: mixed(cg, R), mf: limModel('f', cf), mg: limModel('g', cg) };
+      var hl = R.pick([[1, 1], [-1, -1], [-1, 1], [1, -1]]); // h: Verhalten für x → −∞ und x → +∞, in Worten gegeben
+      return { cf: cf, cg: cg, f: mixed(cf, R), g: mixed(cg, R), mf: limModel('f', cf), mg: limModel('g', cg),
+        hm: hl[0], hp: hl[1], mh: ['\\lim{x→−∞}h(x)=' + infTxt(hl[0]), '\\lim{x→+∞}h(x)=' + infTxt(hl[1])] };
     },
     zuordnen: function (R) {
       var pool = [
@@ -6347,31 +6504,43 @@ body { overflow-wrap: break-word; }
     render: function (E, root) {
       var T = E.T;
 
-      // ---------- 1 Einstieg ----------
+      // ---------- 1 Einstieg: Herauszoomen ----------
+      // f: Grad 3 mit Nullstellen −5, 1, 7; g: Grad 4 mit vier Nullstellen. Beim Herauszoomen wächst der x-Bereich wie X,
+      // der y-Bereich wie X³ bzw. X⁴ – so bleibt der Graph im Bild, und nur die Form ganz links und ganz rechts bleibt übrig.
+      var ZX = [10, 20, 50, 100, 200, 500, 1000];
+      var zf3 = KP.polyFn([3.5, -3.3, -0.3, 0.1]), zf4 = KP.polyFn([5, 1, -1, 0, 0.02]);
+      function zoomFig(fn, n, Y0, q, name, term, cls) {
+        var X = 10 * q, Y = Y0 * Math.pow(q, n);
+        var gr = KP.graph({ x: [-10, 10], y: [-Y0, Y0], w: 240, h: 240, step: [5, Y0 / 2], grid: [2.5, Y0 / 4], noTicks: true,
+          curves: [{ f: function (u) { return fn(u * q) / Math.pow(q, n); }, cls: cls }], aria: 'Graph von ' + name + ' im Ausschnitt von −' + X + ' bis ' + X });
+        return h('figure', { class: 'fig small' }, h('p', { class: 'zoom-t' }, M.view(term)), gr,
+          h('figcaption', null, KP.rich('$x$ von −' + big(X) + ' bis ' + big(X) + ', $y$ von −' + big(Y) + ' bis ' + big(Y))));
+      }
+      var lab0 = KP.lab({
+        title: 'Herauszoomen', wide: true,
+        intro: 'Du siehst die Graphen einer Funktion $f$ 3. Grades und einer Funktion $g$ 4. Grades. Zoome mit dem Regler immer weiter heraus. Was bleibt von den Nullstellen, Hoch- und Tiefpunkten übrig?',
+        sliders: [{ k: 'z', label: 'Ausschnitt', min: 0, max: ZX.length - 1, step: 1, v: 0, fmt: function (v) { return '±' + big(ZX[v]); } }],
+        note: 'Damit die Graphen im Bild bleiben, wächst der Bereich der $y$-Achse viel schneller als der der $x$-Achse – siehe die Angaben unter den Graphen.',
+        render: function (s) {
+          var q = ZX[s.z] / 10;
+          return h('div', { class: 'zoom-row' }, zoomFig(zf3, 3, 15, q, 'f', 'f(x)=0,1x^{3}−0,3x^{2}−3,3x+3,5'), zoomFig(zf4, 4, 20, q, 'g', 'g(x)=0,02x^{4}−x^{2}+x+5', 'c3'));
+        }
+      });
       var s1 = E.section('Verhalten im Unendlichen', [
-        A.box('Grenzverhalten', [
-          P('Wie verhalten sich die Funktionswerte, wenn $x$ immer größer wird ($x→+∞$) oder immer kleiner ($x→−∞$)? Das ist das **Grenzverhalten** einer Funktion, auch Verhalten im Unendlichen genannt.'),
-          P('Werden die Funktionswerte für $x→+∞$ beliebig groß, schreibt man:'),
-          h('p', { class: 'formula' }, M.view('\\lim{x→+∞}f(x)=+∞')),
-          P('Gelesen: „Der Limes von $f(x)$ für $x$ gegen plus unendlich ist plus unendlich.“ Werden die Funktionswerte beliebig klein (negativ mit beliebig großem Betrag), steht rechts $−∞$.'),
-          P('**Beispiele:** Für $f(x)=x^2$ gilt $\\lim{x→−∞}f(x)=+∞$ und $\\lim{x→+∞}f(x)=+∞$. Für $g(x)=x^3$ gilt $\\lim{x→−∞}g(x)=−∞$ und $\\lim{x→+∞}g(x)=+∞$.'),
-          P('Du schreibst immer $+∞$ oder $−∞$ – nie nur ∞. Jede Aussage über einen Grenzwert steht in einer eigenen Zeile.')
+        A.box('Ganz links und ganz rechts', [
+          P('Bisher hast du Graphen meist in der Nähe des Ursprungs betrachtet. Jetzt geht es darum, wie ein Graph **ganz links und ganz rechts** verläuft – also für $x$ mit sehr großem Betrag. Man spricht vom **Verhalten im Unendlichen** oder vom **Grenzverhalten**.'),
+          P('Dafür gibt es eine kurze Sprechweise: Wird $x$ immer größer, sagt man „$x$ strebt gegen plus unendlich“. Wird $x$ immer kleiner (negativ mit immer größerem Betrag), sagt man „$x$ strebt gegen minus unendlich“. Genauso bei den Funktionswerten: „$f(x)$ strebt gegen plus unendlich“ heißt, dass die Funktionswerte beliebig groß werden.')
         ]),
-        A.box('So tippst du einen Grenzwert', [
-          A.list([
-            'Die Taste „lim“ schreibt lim mit $x→$ darunter. Tippe dort +∞ oder −∞ und gehe mit ▶ wieder heraus.',
-            'Dann folgen $f(x)$ (eigene Taste), das Gleichheitszeichen und das Ergebnis, z. B. +∞.'
-          ])
-        ]),
+        lab0,
         E.tasks('einstieg', 'Kurz geprüft', T.einstieg).el
       ]);
 
       // ---------- 2 Potenzfunktionen (Labor) ----------
       var lab1 = KP.lab({
         title: 'Potenzfunktionen',
-        intro: 'Verändere die Hochzahl $n$ und den Faktor $a$ von $f(x)=a·x^n$. Beobachte, wohin der Graph ganz links und ganz rechts verläuft.',
+        intro: 'Verändere den Exponenten $n$ und den Faktor $a$ von $f(x)=a·x^n$. Beobachte, wohin der Graph ganz links und ganz rechts verläuft.',
         sliders: [
-          { k: 'n', label: 'Hochzahl $n$', min: 1, max: 6, step: 1, v: 2 },
+          { k: 'n', label: 'Exponent $n$', min: 1, max: 6, step: 1, v: 2 },
           { k: 'a', label: 'Faktor $a$', min: -3, max: 3, step: 0.5, v: 1, skip0: true }
         ],
         render: function (s) {
@@ -6383,16 +6552,16 @@ body { overflow-wrap: break-word; }
       });
       function row(par, sgn, mi, pl, key) {
         return function (st) {
-          return A.sentence([key + ') $n$ ' + par + ', $a' + (sgn > 0 ? '>' : '<') + '0$: $\\lim{x→−∞}f(x)=$ ', A.inf(st, key + 'm', { inf: mi }, { label: key + ') für x gegen minus unendlich' }),
-            ' und $\\lim{x→+∞}f(x)=$ ', A.inf(st, key + 'p', { inf: pl }, { label: key + ') für x gegen plus unendlich' }), '.'], { name: key + ')' });
+          return A.sentence([key + ') $n$ ' + par + ', $a' + (sgn > 0 ? '>' : '<') + '0$: Strebt $x$ gegen minus unendlich, strebt $f(x)$ gegen ', A.inf(st, key + 'm', { inf: mi }, { label: key + ') für x gegen minus unendlich' }),
+            '. Strebt $x$ gegen plus unendlich, strebt $f(x)$ gegen ', A.inf(st, key + 'p', { inf: pl }, { label: key + ') für x gegen plus unendlich' }), '.'], { name: key + ')' });
         };
       }
       var s2 = E.section('Entdecken: Potenzfunktionen', [
         lab1,
         A.partsStep(E, 'potenz', 'Die vier Fälle', {
-          task: 'Fülle die Lücken für $f(x)=a·x^n$ aus. Probiere im Labor alle vier Fälle aus.',
+          task: 'Fülle die Lücken für $f(x)=a·x^n$ aus. Probiere im Labor alle vier Fälle aus. Für „plus unendlich“ tippst du $+∞$, für „minus unendlich“ $−∞$.',
           parts: [row('gerade', 1, 1, 1, 'a'), row('gerade', -1, -1, -1, 'b'), row('ungerade', 1, -1, 1, 'c'), row('ungerade', -1, 1, -1, 'd')],
-          tip: KP.tip('Stelle im Labor z. B. $n=2$ und $a=−1$ ein: Wohin zeigen die Enden des Graphen? Achte für $x→−∞$ auf das linke Ende, für $x→+∞$ auf das rechte.')
+          tip: KP.tip('Stelle im Labor z. B. $n=2$ und $a=−1$ ein: Wohin zeigen die Enden des Graphen? Achte für „$x$ gegen minus unendlich“ auf das linke Ende, für „plus unendlich“ auf das rechte.')
         }).el
       ]);
 
@@ -6417,7 +6586,7 @@ body { overflow-wrap: break-word; }
       });
       var s3 = E.section('Der Summand mit der höchsten Potenz', [
         A.box('Warum die höchste Potenz entscheidet', [
-          P('Für betragsgroße $x$ ist der Summand mit der höchsten Hochzahl betragsmäßig viel größer als alle anderen. Beispiel $f(x)=x^3−100x^2$ für $x=1000$: Der Summand $x^3$ ist eine Milliarde, der Summand $100x^2$ nur hundert Millionen.'),
+          P('Für betragsgroße $x$ ist der Summand mit dem höchsten Exponenten betragsmäßig viel größer als alle anderen. Beispiel $f(x)=x^3−100x^2$ für $x=1000$: Der Summand $x^3$ ist eine Milliarde, der Summand $100x^2$ nur hundert Millionen.'),
           P('Deshalb hat eine ganzrationale Funktion dasselbe Grenzverhalten wie der Summand $a_n·x^n$ mit der höchsten Potenz. Es kommt nur auf den **Grad** $n$ (gerade oder ungerade) und das **Vorzeichen des Leitkoeffizienten** $a_n$ an.')
         ]),
         lab2,
@@ -6426,12 +6595,26 @@ body { overflow-wrap: break-word; }
 
       // ---------- 4 Grenzverhalten angeben ----------
       var g4 = E.gen('angeben', V.angeben);
-      var s4 = E.section('Grenzverhalten angeben', [
+      var s4 = E.section('Die Schreibweise mit lim', [
+        A.box('Kurz aufgeschrieben', [
+          P('Bisher hast du das Grenzverhalten in Worten beschrieben. In der Mathematik schreibt man es kürzer. Statt „Strebt $x$ gegen plus unendlich, strebt $f(x)$ gegen plus unendlich“ schreibt man:'),
+          h('p', { class: 'formula' }, M.view('\\lim{x→+∞}f(x)=+∞')),
+          P('Gelesen: „Der Limes von $f(x)$ für $x$ gegen plus unendlich ist plus unendlich.“ Strebt $f(x)$ gegen minus unendlich, steht rechts $−∞$.'),
+          P('**Beispiele:** Für $f(x)=x^2$ gilt $\\lim{x→−∞}f(x)=+∞$ und $\\lim{x→+∞}f(x)=+∞$. Für $g(x)=x^3$ gilt $\\lim{x→−∞}g(x)=−∞$ und $\\lim{x→+∞}g(x)=+∞$.'),
+          P('Du schreibst immer $+∞$ oder $−∞$ – nie nur ∞. Jede Aussage über einen Grenzwert steht in einer eigenen Zeile.')
+        ]),
+        A.box('So tippst du einen Grenzwert', [
+          A.list([
+            'Die Taste „lim“ schreibt lim mit $x→$ darunter. Tippe dort +∞ oder −∞ und gehe mit ▶ wieder heraus.',
+            'Dann folgen $f(x)$ (eigene Taste), das Gleichheitszeichen und das Ergebnis, z. B. +∞.'
+          ])
+        ]),
         A.partsStep(E, 'angeben', 'Mit lim aufschreiben', {
-          task: 'Gib das Grenzverhalten für $x→−∞$ und für $x→+∞$ an. Schreibe jede Aussage in eine eigene Zeile.',
+          task: 'Schreibe das Grenzverhalten mit lim auf. Jede Aussage kommt in eine eigene Zeile.',
           parts: [
-            function (st) { return A.limits(st, 'f', { v: 'x', fn: { name: 'f', p: A.poly(g4.cf) } }, g4.mf, { text: 'a) $f(x)=' + g4.f + '$', name: 'a)', idBase: 'angeben-f' }); },
-            function (st) { return A.limits(st, 'g', { v: 'x', fn: { name: 'g', p: A.poly(g4.cg) } }, g4.mg, { text: 'b) $g(x)=' + g4.g + '$', name: 'b)', idBase: 'angeben-g' }); }
+            function (st) { return A.limits(st, 'h', { v: 'x', fn: { name: 'h', lim: { minus: { inf: g4.hm }, plus: { inf: g4.hp } } } }, g4.mh, { text: 'a) Übersetze: „Strebt $x$ gegen minus unendlich, strebt $h(x)$ gegen ' + wort(g4.hm) + '. Strebt $x$ gegen plus unendlich, strebt $h(x)$ gegen ' + wort(g4.hp) + '.“', name: 'a)', idBase: 'angeben-h', keys: ['h(x)'] }); },
+            function (st) { return A.limits(st, 'f', { v: 'x', fn: { name: 'f', p: A.poly(g4.cf) } }, g4.mf, { text: 'b) Gib das Grenzverhalten von $f$ mit $f(x)=' + g4.f + '$ an.', name: 'b)', idBase: 'angeben-f' }); },
+            function (st) { return A.limits(st, 'g', { v: 'x', fn: { name: 'g', p: A.poly(g4.cg) } }, g4.mg, { text: 'c) Gib das Grenzverhalten von $g$ mit $g(x)=' + g4.g + '$ an.', name: 'c)', idBase: 'angeben-g' }); }
           ],
           tip: KP.tip('Suche zuerst den Summanden mit der höchsten Potenz. Beispiel: Bei $4x^2−x^7$ entscheidet $−x^7$: ungerader Grad, negativer Leitkoeffizient.')
         }).el
@@ -6451,9 +6634,9 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
-      // ---------- 6 Ergänzung: negative Hochzahlen ----------
+      // ---------- 6 Ergänzung: negative Exponenten ----------
       var g6 = E.gen('ergaenzung', V.ergaenzung), c6 = g6.c;
-      var s6 = E.section('Ergänzung: negative Hochzahlen', [
+      var s6 = E.section('Ergänzung: negative Exponenten', [
         A.box('Funktionen wie x⁻² und x⁻³', [
           P('Für $f(x)=x^{−2}=\\frac{1}{x^2}$ gilt: Je größer der Betrag von $x$, desto näher liegt $f(x)$ bei 0. Also $\\lim{x→−∞}f(x)=0$ und $\\lim{x→+∞}f(x)=0$. Der Graph nähert sich für $x→±∞$ immer mehr der $x$-Achse.'),
           P('Bei $g(x)=x^{−3}$ ist es genauso. Für negative $x$ sind die Funktionswerte von $x^{−3}$ aber negativ: Der Graph nähert sich der $x$-Achse dort von unten.'),
@@ -6519,7 +6702,7 @@ body { overflow-wrap: break-word; }
         }).el
       ]);
 
-      return E.mount(root, { intro: 'In dieser Woche untersuchst du, wie sich ganzrationale Funktionen für sehr große und sehr kleine $x$ verhalten, und schreibst es mit lim auf.' },
+      return E.mount(root, { intro: 'In dieser Woche untersuchst du, wie sich ganzrationale Funktionen für sehr große und sehr kleine $x$ verhalten. Zuerst beschreibst du es in Worten, danach lernst du die kurze Schreibweise mit lim.' },
         [s1, s2, s3, s4, s5, s6, s7, s8, s9]);
     }
   });
@@ -6608,19 +6791,23 @@ body { overflow-wrap: break-word; }
       var T = E.T;
 
       // ---------- 1 Einstieg ----------
-      var gEven = { x: [-3, 3], y: [-3, 4], w: 220, step: [1, 1], curves: [{ f: function (x) { return 0.25 * x * x * x * x - 1.5 * x * x + 1; }, label: 'f', at: 2.6 }], aria: 'achsensymmetrischer Graph' };
-      var gOdd = { x: [-3, 3], y: [-3.5, 3.5], w: 220, step: [1, 1], curves: [{ f: function (x) { return 0.25 * x * x * x - 1.5 * x; }, label: 'g', at: 2.75 }], points: [{ x: 0, y: 0, cls: 'blue' }], aria: 'punktsymmetrischer Graph' };
+      // Hilfslinien bei x = −1,5 und x = 1,5: gleich hoch (achsensymmetrisch) bzw. Vorzeichenwechsel (punktsymmetrisch)
+      var fE = function (x) { return 0.25 * x * x * x * x - 1.5 * x * x + 1; }, gO = function (x) { return 0.25 * x * x * x - 1.5 * x; };
+      var yE = fE(1.5), yO = gO(1.5);
+      var gEven = { x: [-3, 3], y: [-3, 4], w: 220, step: [1, 1], curves: [{ f: fE, label: 'f', at: 2.6 }],
+        lines: [{ x1: -1.5, y1: 0, x2: -1.5, y2: yE, cls: 'gray' }, { x1: 1.5, y1: 0, x2: 1.5, y2: yE, cls: 'gray' }, { x1: -1.5, y1: yE, x2: 1.5, y2: yE }],
+        points: [{ x: -1.5, y: yE, cls: 'c2' }, { x: 1.5, y: yE, cls: 'c2' }], skipY: [-1], aria: 'achsensymmetrischer Graph: bei x = −1,5 und x = 1,5 ist der Graph gleich hoch' };
+      var gOdd = { x: [-3, 3], y: [-3.5, 3.5], w: 220, step: [1, 1], curves: [{ f: gO, label: 'g', at: 2.75 }],
+        lines: [{ x1: -1.5, y1: 0, x2: -1.5, y2: -yO, cls: 'gray' }, { x1: 1.5, y1: 0, x2: 1.5, y2: yO, cls: 'gray' }, { x1: -1.5, y1: -yO, x2: 1.5, y2: yO }],
+        points: [{ x: -1.5, y: -yO, cls: 'c2' }, { x: 1.5, y: yO, cls: 'c2' }, { x: 0, y: 0, cls: 'blue' }], aria: 'punktsymmetrischer Graph: bei x = −1,5 und x = 1,5 sind die Funktionswerte entgegengesetzt' };
       var s1 = E.section('Zwei besondere Symmetrien', [
         A.box('Achsensymmetrie und Punktsymmetrie', [
           A.list([
             'Der Graph von $f$ ist **achsensymmetrisch zur $y$-Achse**, wenn für alle $x∈D_f$ gilt: $f(−x)=f(x)$. Spiegelt man ihn an der $y$-Achse, ändert er sich nicht.',
             'Der Graph von $f$ ist **punktsymmetrisch zum Ursprung**, wenn für alle $x∈D_f$ gilt: $f(−x)=−f(x)$. Dreht man ihn um 180° um den Ursprung, ändert er sich nicht.'
           ]),
-          A.figRow([{ g: gEven, cap: 'achsensymmetrisch zur $y$-Achse' }, { g: gOdd, cap: 'punktsymmetrisch zum Ursprung' }], 'two')
-        ]),
-        A.box('Bei ganzrationalen Funktionen', [
-          P('Kommen im Funktionsterm **nur gerade Hochzahlen** vor, ist der Graph achsensymmetrisch zur $y$-Achse. Das absolute Glied zählt dabei mit: Es gehört zu $x^0$, und 0 ist gerade.'),
-          P('Kommen **nur ungerade Hochzahlen** vor, ist der Graph punktsymmetrisch zum Ursprung. Kommen gerade und ungerade Hochzahlen vor, hat der Graph keine dieser beiden Symmetrien.')
+          A.figRow([{ g: gEven, cap: 'achsensymmetrisch zur $y$-Achse: gleich hoch, $f(−1,5)=f(1,5)$' }, { g: gOdd, cap: 'punktsymmetrisch zum Ursprung: Vorzeichen wechselt, $g(−1,5)=−g(1,5)$' }], 'two'),
+          P('Die Hilfslinien zeigen es für $x=1,5$: Links und rechts liegen die Punkte des achsensymmetrischen Graphen gleich hoch. Beim punktsymmetrischen Graphen liegt der eine Punkt genauso weit über der $x$-Achse wie der andere darunter. Das gilt nicht nur für 1,5, sondern für jedes $x$.')
         ]),
         E.tasks('einstieg', 'Kurz geprüft', T.einstieg).el
       ]);
@@ -6651,15 +6838,19 @@ body { overflow-wrap: break-word; }
         A.partsStep(E, 'lab', 'Was hast du beobachtet?', {
           parts: [function (st) {
             return A.sentence(['Das orange Spiegelbild fällt mit dem Graphen zusammen, wenn nur Summanden mit ', A.choice(st, 'g', ['geraden', 'ungeraden'], 0, { R: E.rng('lab:g') }),
-              ' Hochzahlen vorkommen ($a=0$ und $c=0$). Das grüne fällt mit ihm zusammen, wenn nur Summanden mit ', A.choice(st, 'u', ['ungeraden', 'geraden'], 0, { R: E.rng('lab:u') }),
-              ' Hochzahlen vorkommen ($b=0$ und $d=0$).'], { name: '' });
+              ' Exponenten vorkommen ($a=0$ und $c=0$). Das grüne fällt mit ihm zusammen, wenn nur Summanden mit ', A.choice(st, 'u', ['ungeraden', 'geraden'], 0, { R: E.rng('lab:u') }),
+              ' Exponenten vorkommen ($b=0$ und $d=0$).'], { name: '' });
           }],
           tip: KP.tip('Stelle zum Beispiel $a=0$ und $c=0$ ein und verändere $b$ und $d$. Probiere danach $b=0$ und $d=0$.')
         }).el
       ]);
 
-      // ---------- 3 Hochzahlen ----------
+      // ---------- 3 Exponenten ----------
       var s3 = E.section('Symmetrie am Term erkennen', [
+        A.box('Bei ganzrationalen Funktionen', [
+          P('Das hast du im Labor entdeckt: Kommen im Funktionsterm **nur gerade Exponenten** vor, ist der Graph achsensymmetrisch zur $y$-Achse. Das absolute Glied zählt dabei mit: Es gehört zu $x^0$, und 0 ist gerade.'),
+          P('Kommen **nur ungerade Exponenten** vor, ist der Graph punktsymmetrisch zum Ursprung. Kommen gerade und ungerade Exponenten vor, hat der Graph keine dieser beiden Symmetrien.')
+        ]),
         E.tasks('exponenten', 'Gerade oder ungerade?', V.exponenten, { before: [P('Steht der Term als Produkt da, multipliziere zuerst aus.')] }).el
       ]);
 
@@ -6679,13 +6870,13 @@ body { overflow-wrap: break-word; }
           task: 'Zeige rechnerisch, dass der Graph von $f$ mit $f(x)=' + g4.f + '$ achsensymmetrisch zur $y$-Achse ist. Beginne mit $f(−x)=…$',
           T: g4.T, model: g4.model, keys: ['f(−x)', 'f(x)'], wayLabel: 'Deine Rechnung:',
           parts: [function (st) { return A.sentence(['Also ist der Graph von $f$ ', A.choice(st, 's', ['achsensymmetrisch zur $y$-Achse', 'punktsymmetrisch zum Ursprung'], 0, { R: E.rng('achse:s') }), '.'], { name: 'Ergebnis' }); }],
-          tip: KP.tip('Setze $(−x)$ mit Klammern ein. Eine gerade Hochzahl macht das Minus weg: $(−x)^2=x^2$, $(−x)^4=x^4$.')
+          tip: KP.tip('Setze $(−x)$ mit Klammern ein. Ein gerader Exponent macht das Minus weg: $(−x)^2=x^2$, $(−x)^4=x^4$.')
         }).el,
         A.wayStep(E, 'punkt', 'Punktsymmetrie zeigen', {
           task: 'Zeige rechnerisch, dass der Graph von $g$ mit $g(x)=' + g5.f + '$ punktsymmetrisch zum Ursprung ist. Beginne mit $g(−x)=…$',
           T: g5.T, model: g5.model, keys: ['g(−x)', 'g(x)'], wayLabel: 'Deine Rechnung:',
           parts: [function (st) { return A.sentence(['Also ist der Graph von $g$ ', A.choice(st, 's', ['achsensymmetrisch zur $y$-Achse', 'punktsymmetrisch zum Ursprung'], 1, { R: E.rng('punkt:s') }), '.'], { name: 'Ergebnis' }); }],
-          tip: KP.tip('Eine ungerade Hochzahl lässt das Minus stehen: $(−x)^3=−x^3$. Klammere am Ende das Minus aus, damit $−g(x)$ dasteht.')
+          tip: KP.tip('Ein ungerader Exponent lässt das Minus stehen: $(−x)^3=−x^3$. Klammere am Ende das Minus aus, damit $−g(x)$ dasteht.')
         }).el
       ]);
 
@@ -6773,7 +6964,7 @@ body { overflow-wrap: break-word; }
               return true;
             }, model, { pre: 'f(x)=', name: 'Funktionsterm' });
           }],
-          tip: KP.tip('Ein Term wie $a·x^4+b·x^2+c$ hat nur gerade Hochzahlen. Bestimme $c$ aus dem Schnittpunkt mit der $y$-Achse, wähle $a$ und bestimme dann $b$ aus $f(1)=0$.')
+          tip: KP.tip('Ein Term wie $a·x^4+b·x^2+c$ hat nur gerade Exponenten. Bestimme $c$ aus dem Schnittpunkt mit der $y$-Achse, wähle $a$ und bestimme dann $b$ aus $f(1)=0$.')
         }).el
       ]);
 
